@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="hardcodedText"
+    android:layout_marginTop="4dp"
+    android:background="@drawable/task_card_mainbg">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/tvDailyId"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily title"
+            android:textColor="@color/white"
+            android:fontFamily="@font/main_font"
+            android:textSize="20sp"
+            android:id="@+id/txtDailyTitle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24:00"
+            android:textColor="@color/white"
+            android:fontFamily="@font/main_font"
+            android:textSize="20sp"
+            android:id="@+id/txtDailyHour"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:gravity="end"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="menu"
+            android:id="@+id/btnMore"
+            android:background="@drawable/baseline_more_vert_24"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10/10"
+            android:textColor="@color/white"
+            android:fontFamily="@font/main_font"
+            android:textSize="20sp"
+            android:id="@+id/txtIteration"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/txtIterationDate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="24:00"
+            android:textColor="@color/white"
+            android:fontFamily="@font/main_font"
+            android:textSize="20sp"
+            android:id="@+id/txtDailyDays"/>
+    </LinearLayout>
+
+</RelativeLayout>

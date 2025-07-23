@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_new_update_scheduledTask"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:background="@drawable/task_description_mainbg"
+    android:backgroundTint="@color/white"
+    android:elevation="32dp"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/main_font"
+        android:text="New scheduled task"
+        android:textColor="@color/black"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/main_font"
+        android:text="Task name"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/etTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:autofillHints=""
+        android:textColor="@color/white"
+        android:background="@drawable/max_rounded_radius"
+        android:backgroundTint="#0000ff"
+        android:drawableStart="@drawable/baseline_drive_file_rename_outline_24"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/main_font"
+        android:hint="16 character max"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColorHint="@color/white"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/main_font"
+        android:text="Task description"
+        android:textColor="@color/black"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/etTaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:autofillHints=""
+        android:background="@drawable/task_description_mainbg"
+        android:backgroundTint="#0000ff"
+        android:fontFamily="@font/main_font"
+        android:gravity="top|start"
+        android:hint="40 character max"
+        android:drawableStart="@drawable/baseline_edit_note_24"
+        android:drawableTint="@color/white"
+        android:drawablePadding="12dp"
+        android:textColor="@color/white"
+        android:inputType="textMultiLine"
+        android:maxLines="3"
+        android:padding="12dp"
+        android:scrollbars="vertical"
+        android:textColorHint="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="Start date"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tvStartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:autofillHints=""
+                android:background="@drawable/max_rounded_radius"
+                android:backgroundTint="#0000ff"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/baseline_calendar_today_24"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/main_font"
+                android:hint="MM/dd/yyyy"
+                android:padding="12dp"
+                android:textColorHint="@color/white" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="End date"
+                android:textColor="@color/black"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:autofillHints=""
+                android:background="@drawable/max_rounded_radius"
+                android:backgroundTint="#0000ff"
+                android:drawableStart="@drawable/baseline_drive_file_rename_outline_24"
+                android:drawablePadding="12dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/main_font"
+                android:hint="MM/dd/yyyy"
+                android:padding="12dp"
+                android:textColorHint="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancelNewScheduled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/max_rounded_radius"
+            android:backgroundTint="#000000"
+            android:fontFamily="@font/main_font"
+            android:text="Cancel"
+            android:textColor="@color/white"/>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnConfirmNewScheduled"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/max_rounded_radius"
+            android:backgroundTint="#0000ff"
+            android:fontFamily="@font/main_font"
+            android:text="Confirm"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+</LinearLayout>

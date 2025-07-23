@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/task_card_mainbg"
+    android:padding="8dp"
+    android:layout_marginVertical="2dp"
+    tools:ignore="HardcodedText"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/llTaskNameLevelContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        tools:ignore="UselessParent">
+
+        <View
+            android:id="@+id/vPriorityLevel"
+            android:layout_width="18dp"
+            android:background="@drawable/scheduled_priority_level"
+            android:layout_height="18dp"/>
+
+        <TextView
+            android:id="@+id/tvScheduledTaskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/main_font"
+            android:text="Scheduled task name"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_taskProgress"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_scheduleId"
+        android:visibility="gone"/>
+
+    <ImageButton
+        android:id="@+id/imgvMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_more_vert_24"
+        android:background="@android:color/transparent"
+        android:layout_alignParentEnd="true"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvScheduledTaskDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/main_font"
+        android:text="Lorem ipsum dolor sit amet consectur, and this and that and this and that and this and that and this and that."
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginBottom="24dp"
+        android:layout_below="@+id/llTaskNameLevelContainer"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal"
+        android:layout_below="@+id/tvScheduledTaskDescription"
+        tools:ignore="UselessParent">
+
+        <TextView
+            android:id="@+id/tvStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/main_font"
+            android:text="Start date"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/main_font"
+            android:text="|"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/tvEndDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/main_font"
+            android:text="End date"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@drawable/mainbg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".intro_1">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#E727F2"
+            android:textStyle="bold"
+            android:fontFamily="@font/main_font"
+            android:textSize="35sp"
+            android:text="Track your"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#68006E"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="35sp"
+            android:fontFamily="@font/main_font"
+            android:text="work!"/>
+
+        <ImageView
+            android:layout_width="200dp"
+            android:src="@drawable/intro_2"
+            android:layout_height="200dp"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="30dp"
+            android:fontFamily="@font/main_font"
+            android:text="Start"
+            android:textColor="@color/white"
+            android:background="@drawable/max_rounded_radius"
+            android:backgroundTint="@color/black"
+            android:drawableEnd="@drawable/baseline_chevron_right_24"
+            android:id="@+id/btnStart"/>
+    </LinearLayout>
+
+</RelativeLayout>

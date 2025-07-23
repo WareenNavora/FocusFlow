@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <item android:id="@+id/bnv_schedList"
+            android:title="Schedule"
+            android:icon="@drawable/outline_list_24"
+            />
+
+        <item android:id="@+id/bnv_dailyList"
+            android:title="Daily"
+            android:icon="@drawable/baseline_content_paste_24" />
+
+        <item android:id="@+id/bnv_stat"
+            android:title="Statistics"
+            android:icon="@drawable/baseline_query_stats_24" />
+
+        <item android:id="@+id/bnv_more"
+            android:title="More"
+            android:icon="@drawable/baseline_more_horiz_24" />
+</menu>

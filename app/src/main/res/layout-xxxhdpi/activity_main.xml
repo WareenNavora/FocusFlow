@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbg"
+    tools:context=".main">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="@drawable/bottom_rounded_radius"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:id="@+id/ll_appName"
+            android:layout_width="match_parent"
+            android:layout_marginTop="12dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:contentDescription="app_logo"
+                android:src="@drawable/applogo"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="Focus Flow"
+                android:textColor="#C8C8C8"
+                android:textSize="35sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_marginTop="50dp"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:layout_alignParentEnd="true"
+            android:contentDescription="bg_design_1"
+            android:src="@drawable/home_icon_bg_top"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:translationY="90dp"
+            android:rotation="45"
+            android:translationZ="-2dp"
+            android:layout_width="150dp"
+            android:layout_height="250dp"
+            android:contentDescription="bg_design_1"
+            android:src="@drawable/right_top_bg_img"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tv_random_quote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_appName"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/main_font"
+            android:text="Keep your workspace clean and clutter-free always."
+            android:textColor="#fff"
+            android:textSize="28sp"
+            tools:ignore="HardcodedText" />
+    </RelativeLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fcv_main_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="590dp"
+        android:layout_above="@+id/bnv_main_menu"
+        android:layout_marginHorizontal="8dp"
+        android:background="@drawable/main_fragment_bg"
+        android:backgroundTint="@color/white"
+        android:padding="8dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnv_main_menu"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:clipToPadding="false"
+        android:layout_margin="12dp"
+        android:background="@drawable/main_bg_menu"
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconSize="24dp"
+        app:menu="@menu/main_menu" />
+
+    <ImageButton
+        android:id="@+id/btnAddTask"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginVertical="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_toStartOf="@id/bnv_main_menu"
+        android:background="@drawable/max_rounded_radius"
+        android:backgroundTint="#040037"
+        android:contentDescription="Add task"
+        android:paddingHorizontal="36dp"
+        android:src="@drawable/baseline_add_24"
+        tools:ignore="HardcodedText" />
+
+
+</RelativeLayout>

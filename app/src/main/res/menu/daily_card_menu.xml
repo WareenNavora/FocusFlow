@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="HardcodedText"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <item
+        android:id="@+id/mnuUpdate"
+        android:contentDescription="Update daily card"
+        android:title="Update" />
+
+    <item
+        android:id="@+id/mnuDelete"
+        android:contentDescription="Delete daily card"
+        android:title="Delete"/>
+
+</menu>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:background="@drawable/task_description_mainbg"
+    android:backgroundTint="@color/white"
+    android:elevation="24dp"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:ignore="HardcodedText">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/main_font"
+        android:text="New daily task"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/main_font"
+        android:text="Task name"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:autofillHints=""
+        android:background="@drawable/max_rounded_radius"
+        android:backgroundTint="#0000ff"
+        android:drawableStart="@drawable/baseline_drive_file_rename_outline_24"
+        android:drawablePadding="12dp"
+        android:fontFamily="@font/main_font"
+        android:textColor="@color/white"
+        android:hint="16 character max"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColorHint="@color/white" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="Iteration"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etIteration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:autofillHints=""
+                android:background="@drawable/max_rounded_radius"
+                android:backgroundTint="#0000ff"
+                android:drawableStart="@drawable/baseline_cached_24"
+                android:drawablePadding="12dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/main_font"
+                android:hint="1 minimum"
+                android:inputType="number"
+                android:padding="12dp"
+                android:textColorHint="@color/white" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="Hour (optional)"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:autofillHints=""
+                android:background="@drawable/max_rounded_radius"
+                android:backgroundTint="#0000ff"
+                android:drawablePadding="12dp"
+                android:fontFamily="@font/main_font"
+                android:hint="HH:ss"
+                android:textColor="@color/white"
+                android:padding="12dp"
+                android:textColorHint="@color/white"
+                app:drawableStartCompat="@drawable/baseline_access_time_24" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/main_font"
+        android:text="Weekdays"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginBottom="12dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbSun"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@drawable/radio_scheduled_text_color_selector"
+            android:text="SU"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cbMon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@drawable/radio_scheduled_text_color_selector"
+            android:text="M"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cbTue"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@drawable/radio_scheduled_text_color_selector"
+            android:text="T"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <CheckBox
+            android:id="@+id/cbWed"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@drawable/radio_scheduled_text_color_selector"
+            android:text="W"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <CheckBox
+            android:id="@+id/cbThu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@drawable/radio_scheduled_text_color_selector"
+            android:text="TH"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/cbFri"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@drawable/radio_scheduled_text_color_selector"
+            android:text="F"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <CheckBox
+            android:id="@+id/cbSat"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:button="@android:color/transparent"
+            android:background="@drawable/radio_selector"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textColor="@drawable/radio_scheduled_text_color_selector"
+            android:text="SA"/>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancelNewDaily"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/max_rounded_radius"
+            android:backgroundTint="#000000"
+            android:fontFamily="@font/main_font"
+            android:text="Cancel"
+            android:textColor="@color/white"/>
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnConfirmNewDaily"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/max_rounded_radius"
+            android:backgroundTint="#0000ff"
+            android:fontFamily="@font/main_font"
+            android:text="Confirm"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+</LinearLayout>
