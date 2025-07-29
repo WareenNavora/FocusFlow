@@ -1,6 +1,12 @@
 package com.android.focusflow;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +21,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +77,9 @@ public class ScheduleFrag extends Fragment {
         // schedule database initialization
         initializeDatabase();
 
+        ItemTouchHelper itemTouchHelper = getItemTouchHelper(getContext());
+        itemTouchHelper.attachToRecyclerView(taskView);
+
         executor.submit(() -> {
             getAllScheduledTaskAndStoreInList(selectedProgress);
 
@@ -77,9 +87,6 @@ public class ScheduleFrag extends Fragment {
                 setupTaskCardRecyclerView(view);
             });
         });
-
-        ItemTouchHelper itemTouchHelper = getItemTouchHelper(getContext());
-        itemTouchHelper.attachToRecyclerView(taskView);
 
         rgScheduleProgress.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -141,42 +148,167 @@ public class ScheduleFrag extends Fragment {
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT
         ) {
             @Override
+            public void onChildDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView,
+                                    @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY,
+                                    int actionState, boolean isCurrentlyActive) {
+
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    View itemView = viewHolder.itemView;
+                    float cornerRadius = 40f;
+                    Paint paint = new Paint();
+                    paint.setColor(Color.RED);
+                    paint.setAntiAlias(true);
+
+                    float top = itemView.getTop();
+                    float bottom = itemView.getBottom();
+                    float left, right;
+
+                    RectF rect;
+                    Path path = new Path();
+
+                    if (dX > 0) {
+                        // Swiping to the right
+                        left = itemView.getLeft();
+                        right = itemView.getLeft() + dX;
+                        rect = new RectF(left, top, right, bottom);
+
+                        path.addRoundRect(
+                                rect,
+                                new float[]{
+                                        cornerRadius, cornerRadius, // top-left
+                                        0f, 0f,                     // top-right
+                                        0f, 0f,                     // bottom-right
+                                        cornerRadius, cornerRadius  // bottom-left
+                                },
+                                Path.Direction.CW
+                        );
+
+                    } else {
+                        // Swiping to the left
+                        left = itemView.getRight() + dX;
+                        right = itemView.getRight();
+                        rect = new RectF(left, top, right, bottom);
+
+                        path.addRoundRect(
+                                rect,
+                                new float[]{
+                                        0f, 0f,                     // top-left
+                                        cornerRadius, cornerRadius, // top-right
+                                        cornerRadius, cornerRadius, // bottom-right
+                                        0f, 0f                      // bottom-left
+                                },
+                                Path.Direction.CW
+                        );
+                    }
+
+                    canvas.save();
+                    canvas.clipPath(path);
+                    canvas.drawRect(rect, paint);
+                    canvas.restore();
+
+                    // Draw the "Swiping" text
+                    paint.setColor(Color.WHITE);
+                    paint.setTextSize(40);
+                    paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+                    String swipeText = "Swiping";
+
+                    float textWidth = paint.measureText(swipeText);
+                    float textX = (dX > 0)
+                            ? itemView.getLeft() + 40
+                            : itemView.getRight() - textWidth - 40;
+                    float textY = top + (itemView.getHeight() / 2f) + 15;
+
+                    canvas.drawText(swipeText, textX, textY, paint);
+                }
+
+                super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+
+
+            @Override
+            public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                int position = viewHolder.getAdapterPosition();
+                String currentProgress = scheduleTaskProgress.get(position);
+
+                if (currentProgress.equals("Do")) {
+                    return ItemTouchHelper.RIGHT; // Allow only right swipe
+                } else if (currentProgress.equals("Doing")) {
+                    return ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT; // Allow both
+                } else if (currentProgress.equals("Done")) {
+                    return ItemTouchHelper.LEFT; // Allow only left swipe
+                }
+
+                return super.getSwipeDirs(recyclerView, viewHolder);
+            }
+
+
+            @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                switch (selectedProgress) {
-                    case "Do":
-                        if (direction == ItemTouchHelper.LEFT) {
-                            //disable this move
-                        } else if (direction == ItemTouchHelper.RIGHT) {
-                            Toast.makeText(context, "This task is now on Doing", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                    case "Doing":
-                        if (direction == ItemTouchHelper.LEFT) {
-                            Toast.makeText(context, "This task is now on Do", Toast.LENGTH_SHORT).show();
-                        } else if (direction == ItemTouchHelper.RIGHT) {
-                            Toast.makeText(context, "This task is now on Done", Toast.LENGTH_SHORT).show();
-                        }
-                        break;
-                    case "Done":
-                        if (direction == ItemTouchHelper.LEFT) {
-                            Toast.makeText(context, "This task is now on Doing", Toast.LENGTH_SHORT).show();
-                        } else if (direction == ItemTouchHelper.RIGHT) {
-                            //disable this move
-                        }
-                        break;
+                int position = viewHolder.getAdapterPosition();
+
+                // Get actual progress for the swiped item
+                String currentProgress = scheduleTaskProgress.get(position);
+
+                String schedId = scheduleId.get(position);
+                String schedName = scheduleName.get(position);
+                String schedDes = scheduleDes.get(position);
+                String schedStart = scheduleStartDate.get(position);
+                String schedEnd = scheduleEndDate.get(position);
+
+                String newProgress;
+
+                if (currentProgress.equals("Do") && direction == ItemTouchHelper.RIGHT) {
+                    newProgress = "Doing";
+                } else if (currentProgress.equals("Doing")) {
+                    if (direction == ItemTouchHelper.LEFT) {
+                        newProgress = "Do";
+                    } else if (direction == ItemTouchHelper.RIGHT) {
+                        newProgress = "Done";
+                    } else {
+                        newProgress = null;
+                    }
+                } else if (currentProgress.equals("Done") && direction == ItemTouchHelper.LEFT) {
+                    newProgress = "Doing";
+                } else {
+                    newProgress = null;
                 }
 
+                if (newProgress == null) {
+                    // Invalid swipe, reset the item visually
+                    adapter.notifyItemChanged(position);
+                    return;
+                }
+
+                ScheduleEntity scheduleEntity = new ScheduleEntity(schedName, schedDes, schedStart, schedEnd, newProgress);
+                scheduleEntity.setTaskId(Integer.parseInt(schedId));
+
+                executor.execute(() -> {
+                    scheduleDatabase.getScheduleDAO().editSchedule(scheduleEntity);
+
+                    new Handler(Looper.getMainLooper()).post(() -> {
+                        // Remove item from in-memory lists
+                        scheduleId.remove(position);
+                        scheduleName.remove(position);
+                        scheduleDes.remove(position);
+                        scheduleStartDate.remove(position);
+                        scheduleEndDate.remove(position);
+                        scheduleTaskProgress.remove(position);
+
+                        // Notify adapter so the item disappears
+                        adapter.notifyItemRemoved(position);
+
+                    });
+                });
             }
         };
 
         return new ItemTouchHelper(simpleCallback);
     }
-
 
     private void initializeDatabase(){
         RoomDatabase.Callback scheduleCallback = new RoomDatabase.Callback() {

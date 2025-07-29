@@ -44,7 +44,10 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
 
     ExecutorService executorService = Executors.newCachedThreadPool();
     Handler handler = new Handler(Looper.getMainLooper());
+
     DailyEntity dailyEntity;
+    List<DailyEntity> dailyEntities;
+
     String[] dailyActiveDays;
     String dailyDays;
     DailyDatabase dailyDatabase;

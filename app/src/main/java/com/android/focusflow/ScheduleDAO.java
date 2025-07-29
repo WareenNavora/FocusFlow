@@ -29,7 +29,19 @@ public interface ScheduleDAO {
     @Query("SELECT COUNT(Task_Id) AS schedule_size FROM tblSchedule")
     public Long getScheduleSize();
 
+    @Query("SELECT COUNT(Task_Progress) AS schedule_size FROM tblSchedule WHERE Task_Progress = 'Do'")
+    public Long getScheduleDoSize();
+
+    @Query("SELECT COUNT(Task_Progress) AS schedule_size FROM tblSchedule WHERE Task_Progress = 'Doing'")
+    public Long getScheduleDoingSize();
+
+    @Query("SELECT COUNT(Task_Progress) AS schedule_size FROM tblSchedule WHERE Task_Progress = 'Done'")
+    public Long getScheduleDoneSize();
+
     @Query("SELECT * FROM tblSchedule WHERE Task_Progress = :progressStatus")
     List<ScheduleEntity> getSchedulesByProgress(String progressStatus);
+
+    @Query("DELETE FROM tblschedule")
+    public void deleteAllDaily();
 
 }

@@ -65,7 +65,7 @@
         android:text="Lorem ipsum dolor sit amet consectur, and this and that and this and that and this and that and this and that."
         android:textColor="@color/white"
         android:textSize="18sp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="4dp"
         android:layout_below="@+id/llTaskNameLevelContainer"
         tools:ignore="HardcodedText" />
 

@@ -26,4 +26,7 @@ public interface DailyDao {
 
     @Query("SELECT COUNT(Daily_id) AS daily_size FROM tbldaily")
     public long getDailySize();
+
+    @Query("DELETE FROM tblDaily")
+    public void deleteAllDaily();
 }

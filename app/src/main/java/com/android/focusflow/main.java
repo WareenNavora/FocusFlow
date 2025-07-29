@@ -250,8 +250,10 @@ public class main extends AppCompatActivity {
 
                 executorService.execute(() -> {
                     dailyDatabase.getDailyDao().addDaily(dailyEntity);
+                    handler.post(() -> {
+                        dialog.dismiss();
+                    });
 
-                    handler.post(dialog::dismiss);
                 });
 
                 activeDaySunToSat.clear();

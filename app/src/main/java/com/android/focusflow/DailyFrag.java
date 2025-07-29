@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -29,6 +30,9 @@ public class DailyFrag extends Fragment {
     RecyclerView cardViewer;
     ExecutorService executorService;
     Handler handler;
+
+    DailyEntity dailyEntity;
+    List<DailyEntity> dailyEntities;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -43,6 +47,8 @@ public class DailyFrag extends Fragment {
         dailyLatestIteratedDate = new ArrayList<>();
         dailyDays = new ArrayList<>();
         dailyHour = new ArrayList<>();
+
+        dailyEntities = new ArrayList<>();
 
         initializeDatabase();
 
@@ -68,7 +74,9 @@ public class DailyFrag extends Fragment {
         executorService.submit(() -> {
             storeAllDataInDatabase(); // populates all lists
 
-            handler.post(dailyAdapterDisplay::notifyDataSetChanged);
+            handler.post(() -> {
+                dailyAdapterDisplay.notifyDataSetChanged();
+            });
         });
 
         return view;
@@ -126,5 +134,4 @@ public class DailyFrag extends Fragment {
             }
         }
     }
-
 }

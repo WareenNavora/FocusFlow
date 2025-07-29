@@ -42,6 +42,280 @@
                 android:src="@drawable/baseline_help_outline_24"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/task_card_mainbg"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:text="Total task"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:id="@+id/txtTotalTaskCount"
+                            android:text="10000"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="6dp"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:text="Daily task"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:id="@+id/txtTotalDailyCount"
+                            android:text="10000"/>
+
+                        <View
+                            android:layout_width="wrap_content"
+                            android:layout_height="12dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="15sp"
+                            android:text="Scheduled task"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:id="@+id/txtTotalScheduleCount"
+                            android:text="10000"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="6dp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/task_card_mainbg"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:text="Do"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtDoTotalCount"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:text="1000"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:text="Doing"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtDoingTotalCount"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:text="1000"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:text="Done"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/txtDoneTotalCount"
+                            android:fontFamily="@font/main_font"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:text="1000"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_margin="6dp"
+                android:background="@drawable/task_card_mainbg"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total priority level"
+                    android:fontFamily="@font/main_font"
+                    android:layout_margin="4dp"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/main_bg_menu"
+                        android:backgroundTint="#ff0000"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtPriorityTotalCount"
+                        android:fontFamily="@font/main_font"
+                        android:textSize="20dp"
+                        android:textColor="@color/white"
+                        android:text="1000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/main_bg_menu"
+                        android:backgroundTint="#00ff00"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtNormalTotalCount"
+                        android:fontFamily="@font/main_font"
+                        android:textSize="20dp"
+                        android:textColor="@color/white"
+                        android:text="1000"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:layout_marginVertical="8dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/main_bg_menu"
+                        android:backgroundTint="#00ffff"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/txtLeastTotalCount"
+                        android:fontFamily="@font/main_font"
+                        android:textSize="20dp"
+                        android:textColor="@color/white"
+                        android:text="1000"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
 
