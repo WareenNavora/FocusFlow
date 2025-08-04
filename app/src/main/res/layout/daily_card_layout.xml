@@ -8,19 +8,25 @@
     android:layout_marginTop="4dp"
     android:background="@drawable/task_card_mainbg">
 
+    <CheckBox
+        android:id="@+id/cbCheckDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:buttonTint="@color/white" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:orientation="vertical"
+        android:layout_marginLeft="12dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true">
+        android:layout_toRightOf="@+id/cbCheckDaily">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:id="@+id/tvDailyId"/>
-
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,10 +50,41 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="end"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10/10"
+                android:layout_gravity="end"
+                android:textColor="@color/white"
+                android:fontFamily="@font/main_font"
+                android:textSize="20sp"
+                android:id="@+id/txtIteration"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/txtIterationDate"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SU M T W TH F SA"
+                android:textColor="@color/white"
+                android:fontFamily="@font/main_font"
+                android:textSize="20sp"
+                android:id="@+id/txtDailyDays"/>
+        </LinearLayout>
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -56,29 +93,7 @@
             android:id="@+id/btnMore"
             android:background="@drawable/baseline_more_vert_24"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="10/10"
-            android:textColor="@color/white"
-            android:fontFamily="@font/main_font"
-            android:textSize="20sp"
-            android:id="@+id/txtIteration"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:id="@+id/txtIterationDate"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="24:00"
-            android:textColor="@color/white"
-            android:fontFamily="@font/main_font"
-            android:textSize="20sp"
-            android:id="@+id/txtDailyDays"/>
     </LinearLayout>
+
 
 </RelativeLayout>

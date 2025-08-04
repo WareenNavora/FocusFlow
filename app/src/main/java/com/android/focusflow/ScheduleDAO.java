@@ -42,6 +42,6 @@ public interface ScheduleDAO {
     List<ScheduleEntity> getSchedulesByProgress(String progressStatus);
 
     @Query("DELETE FROM tblschedule")
-    public void deleteAllDaily();
+    public void deleteAllSchedule();
 
 }

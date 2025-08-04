@@ -12,7 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class intro_1 extends AppCompatActivity {
+public class Intro_1 extends AppCompatActivity {
     Button btn_next;
 
     @Override
@@ -30,7 +30,7 @@ public class intro_1 extends AppCompatActivity {
         boolean isFirstTime = welcomePref.getBoolean("firstTimePref", true);
 
         if(!isFirstTime){
-            startActivity(new Intent(intro_1.this, main.class));
+            startActivity(new Intent(Intro_1.this, Main.class));
         }else{
             SharedPreferences.Editor prefEditor = welcomePref.edit();
             prefEditor.putBoolean("firstTimePref", false);
@@ -41,7 +41,7 @@ public class intro_1 extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(intro_1.this, intro_2.class);
+                Intent intent = new Intent(Intro_1.this, Intro_2.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NO_HISTORY);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);

@@ -1,7 +1,6 @@
 package com.android.focusflow;
 
 import androidx.room.Dao;
-import androidx.room.Database;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -29,4 +28,8 @@ public interface DailyDao {
 
     @Query("DELETE FROM tblDaily")
     public void deleteAllDaily();
+
+    @Query("SELECT * FROM tblDaily WHERE ' ' || Daily_days || ' ' LIKE '%' || ' ' || :day || ' ' || '%'")
+    public List<DailyEntity> getDailyByDay(String day);
+
 }

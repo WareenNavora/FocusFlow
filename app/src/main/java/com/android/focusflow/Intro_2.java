@@ -11,7 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class intro_2 extends AppCompatActivity {
+public class Intro_2 extends AppCompatActivity {
 
     Button btn_start;
 
@@ -31,7 +31,7 @@ public class intro_2 extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(intro_2.this, main.class);
+                Intent intent = new Intent(Intro_2.this, Main.class);
                 startActivity(intent);
             }
         });

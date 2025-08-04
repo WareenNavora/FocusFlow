@@ -36,13 +36,14 @@ import com.google.android.material.navigation.NavigationBarView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class main extends AppCompatActivity {
+public class Main extends AppCompatActivity {
 
     BottomNavigationView bnv_main;
     ImageButton btnAddTask;
@@ -51,6 +52,7 @@ public class main extends AppCompatActivity {
     String dailyName, dailyIteration, dailyHour;
     String[] dailyActiveDays;
     String activeFragment;
+    TextView tvRandomQuote;
 
     DailyDatabase dailyDatabase;
     DailyDao dailyDao;
@@ -58,6 +60,29 @@ public class main extends AppCompatActivity {
 
     ScheduleDatabase scheduleDatabase;
     ScheduleAdapterDisplay adapterDisplay;
+
+    ArrayList<String> quotesList = new ArrayList<>(Arrays.asList(
+            "For every minute spent organizing, an hour is earned.",
+            "Organize before you do, so it's not mixed up.",
+            "Schedule your priorities, don't prioritize your schedule.",
+            "Good order is the foundation of all things.",
+            "A goal without a plan is just a wish.",
+            "Focus on your work; success will follow.",
+            "Do one thing at a time for efficiency.",
+            "Plan well, work smart, achieve more.",
+            "Efficiency is doing things right; effectiveness is doing right things.",
+            "Order and simplification are first steps to mastery.",
+            "Without direction, you will end up someplace else.",
+            "Break down big tasks to get started easily.",
+            "Discipline connects your goals to your achievements.",
+            "Great achievements require a plan and some urgency.",
+            "Own your morning. Elevate your life.",
+            "Clutter simply means decisions are being delayed.",
+            "Move mountains by first carrying small stones.",
+            "Manage your time, or manage nothing else.",
+            "Plan your work daily, then work your plan.",
+            "Organize to live better, not to change who you are."
+    ));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +100,12 @@ public class main extends AppCompatActivity {
         initializeDailyDatabase();
 
         dailyActiveDays = new String[7];
+
+        tvRandomQuote = findViewById(R.id.tv_random_quote);
+        tvRandomQuote.setText(quotesList.get(getRandomNumber1to20() - 1));
+        tvRandomQuote.setOnClickListener(view -> {
+            tvRandomQuote.setText(quotesList.get(getRandomNumber1to20() - 1));
+        });
 
         bnv_main = findViewById(R.id.bnv_main_menu);
         btnAddTask = findViewById(R.id.btnAddTask);
@@ -128,6 +159,11 @@ public class main extends AppCompatActivity {
                     return WindowInsetsCompat.CONSUMED;
                 }
         );
+    }
+
+    private int getRandomNumber1to20() {
+        Random random = new Random();
+        return random.nextInt(20) + 1;
     }
 
     private void initializeScheduleDatabase(){
@@ -297,16 +333,16 @@ public class main extends AppCompatActivity {
                         @Override
                         public void onScheduleAdded(boolean success) {
                             if (success) {
-                                Toast.makeText(main.this, "Added successfully!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Main.this, "Added successfully!", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             } else {
-                                Toast.makeText(main.this, "Error occured, please try again later!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Main.this, "Error occured, please try again later!", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         }
                     });
                 }else{
-                    Toast.makeText(main.this, "Missing or invalid input", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Main.this, "Missing or invalid input", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -314,7 +350,7 @@ public class main extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(main.this, "Canceled!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Main.this, "Canceled!", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

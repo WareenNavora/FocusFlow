@@ -166,6 +166,8 @@ public class ScheduleFrag extends Fragment {
                     RectF rect;
                     Path path = new Path();
 
+                    String swipeText;
+
                     if (dX > 0) {
                         // Swiping to the right
                         left = itemView.getLeft();
@@ -183,6 +185,7 @@ public class ScheduleFrag extends Fragment {
                                 Path.Direction.CW
                         );
 
+                        swipeText = "Swiping to next phase";
                     } else {
                         // Swiping to the left
                         left = itemView.getRight() + dX;
@@ -199,6 +202,8 @@ public class ScheduleFrag extends Fragment {
                                 },
                                 Path.Direction.CW
                         );
+
+                        swipeText = "Swiping to previous phase";
                     }
 
                     canvas.save();
@@ -206,11 +211,10 @@ public class ScheduleFrag extends Fragment {
                     canvas.drawRect(rect, paint);
                     canvas.restore();
 
-                    // Draw the "Swiping" text
+                    // Draw the swipe text
                     paint.setColor(Color.WHITE);
                     paint.setTextSize(40);
                     paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
-                    String swipeText = "Swiping";
 
                     float textWidth = paint.measureText(swipeText);
                     float textX = (dX > 0)
@@ -223,7 +227,6 @@ public class ScheduleFrag extends Fragment {
 
                 super.onChildDraw(canvas, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
             }
-
 
             @Override
             public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {

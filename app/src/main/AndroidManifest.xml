@@ -13,13 +13,13 @@
         android:theme="@style/Theme.FocusFlow"
         tools:targetApi="31">
         <activity
-            android:name=".main"
+            android:name=".Main"
             android:exported="false" />
         <activity
-            android:name=".intro_2"
+            android:name=".Intro_2"
             android:exported="false" />
         <activity
-            android:name=".intro_1"
+            android:name=".Intro_1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

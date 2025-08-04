@@ -1,9 +1,11 @@
 package com.android.focusflow;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +27,11 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -49,7 +54,7 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
     List<DailyEntity> dailyEntities;
 
     String[] dailyActiveDays;
-    String dailyDays;
+    String dailyDays, currentDaySelected;
     DailyDatabase dailyDatabase;
 
     public DailyAdapterDisplay(
@@ -60,7 +65,8 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
             ArrayList<String> dailyRemainingIteration,
             ArrayList<String> dailyLatestIteratedDate,
             ArrayList<String> dailyHour,
-            ArrayList<String> dailyWeekDays) {
+            ArrayList<String> dailyWeekDays,
+            String currentDaySelected) {
 
         this.context = context;
         this.dailyId = dailyId;
@@ -70,6 +76,7 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
         this.dailyLatestIteratedDate = dailyLatestIteratedDate;
         this.dailyHour = dailyHour;
         this.dailyWeekDays = dailyWeekDays;
+        this.currentDaySelected = currentDaySelected;
     }
 
     @NonNull
@@ -80,6 +87,7 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
         return new MyViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull DailyAdapterDisplay.MyViewHolder holder, int position) {
 
@@ -91,7 +99,6 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
         holder.tvDailyLatestIteratedDate.setText((dailyLatestIteratedDate.get(position)));
         holder.tvDailyHour.setText(dailyHour.get(position));
         holder.tvDailyDays.setText(dailyWeekDays.get(position));
-
         holder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -250,6 +257,54 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
                 popupMenu.show();
             }
         });
+        holder.cbChecker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //decrement the remaining iteration by one and update the database and views,
+                //if the remaining iteration is only one and it is checked, then hide them and show them in another recyclerview
+                String id = dailyId.get(position);
+                String name = dailyName.get(position);
+                String totalIteration = dailyTotalIteration.get(position);
+                String remainingIteration = dailyRemainingIteration.get(position);
+                String latestIteratedDate = dailyLatestIteratedDate.get(position);
+                String hour = dailyHour.get(position);
+                String days = dailyWeekDays.get(position);
+
+                //update the iteration to the database
+                dailyEntity = new DailyEntity(name, totalIteration, String.valueOf(Integer.parseInt(remainingIteration) - 1), latestIteratedDate, hour, days);
+                dailyEntity.setDailyId(Integer.parseInt(id));
+
+                executorService.execute(() -> {
+                    initializeDatabase();
+                    dailyDatabase.getDailyDao().updateDaily(dailyEntity);
+
+                    handler.post(() -> {
+                        if (Integer.parseInt(remainingIteration) - 1 <= 0) {
+                            // Remove from all lists
+                            dailyId.remove(position);
+                            dailyName.remove(position);
+                            dailyTotalIteration.remove(position);
+                            dailyRemainingIteration.remove(position);
+                            dailyLatestIteratedDate.remove(position);
+                            dailyHour.remove(position);
+                            dailyWeekDays.remove(position);
+
+                            // Notify RecyclerView about item removal
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, getItemCount());
+                        } else {
+                            // Update the data in list
+                            dailyRemainingIteration.set(position, String.valueOf(Integer.parseInt(remainingIteration) - 1));
+
+                            // Notify RecyclerView to redraw this item
+                            notifyItemChanged(position);
+                        }
+
+                        holder.cbChecker.setChecked(false);
+                    });
+                });
+            }
+        });
     }
 
     @Override
@@ -261,6 +316,7 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
 
         TextView tvDailyId, tvDailyName, tvDailyIteration, tvDailyLatestIteratedDate, tvDailyHour, tvDailyDays;
         ImageButton btnMore;
+        CheckBox cbChecker;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -272,6 +328,7 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
             tvDailyHour = itemView.findViewById(R.id.txtDailyHour);
             tvDailyDays = itemView.findViewById(R.id.txtDailyDays);
             btnMore = itemView.findViewById(R.id.btnMore);
+            cbChecker = itemView.findViewById(R.id.cbCheckDaily);
         }
     }
 
