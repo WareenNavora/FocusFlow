@@ -106,9 +106,11 @@ public class DailyFrag extends Fragment {
 
         rbToday.setOnCheckedChangeListener((compoundButton, isChecked) -> {
             if (isChecked) {
-                rbTom.setChecked(false); // ensure toggle behavior
+                rbTom.setChecked(false);
                 loadTasksByDay(today);
                 currentDay = today;
+                // Update the adapter with the new current day
+                dailyAdapterDisplay.updateCurrentDay(currentDay);
             }
         });
 
@@ -117,6 +119,8 @@ public class DailyFrag extends Fragment {
                 rbToday.setChecked(false);
                 loadTasksByDay(tomorrow);
                 currentDay = tomorrow;
+                // Update the adapter with the new current day
+                dailyAdapterDisplay.updateCurrentDay(currentDay);
             }
         });
 
@@ -234,7 +238,7 @@ public class DailyFrag extends Fragment {
                     paint.setTextSize(40);
                     paint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 
-                    String swipeText = "Swiping to next phase";
+                    String swipeText = "Release to mark as done";
                     float textWidth = paint.measureText(swipeText);
                     float textX = itemView.getLeft() + 40;
                     float textY = top + (itemView.getHeight() / 2f) + 15;

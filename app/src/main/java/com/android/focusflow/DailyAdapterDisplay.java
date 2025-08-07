@@ -99,6 +99,13 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
         holder.tvDailyLatestIteratedDate.setText((dailyLatestIteratedDate.get(position)));
         holder.tvDailyHour.setText(dailyHour.get(position));
         holder.tvDailyDays.setText(dailyWeekDays.get(position));
+        String tomorrow = DayUtil.getTomorrowAbbreviation();
+        if (currentDaySelected != null && currentDaySelected.equals(tomorrow)) {
+            holder.cbChecker.setVisibility(View.GONE);
+        } else {
+            holder.cbChecker.setVisibility(View.VISIBLE);
+        }
+
         holder.btnMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -310,6 +317,11 @@ public class DailyAdapterDisplay extends RecyclerView.Adapter<DailyAdapterDispla
     @Override
     public int getItemCount() {
         return dailyId.size();
+    }
+
+    public void updateCurrentDay(String currentDay) {
+        this.currentDaySelected = currentDay;
+        notifyDataSetChanged(); // Refresh all items to update checkbox visibility
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
